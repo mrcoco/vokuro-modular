@@ -1,0 +1,1 @@
+<section class="content-header"><?php if (isset($page_title) && !empty($page_title)) { ?><h1><?= $page_title ?><?php if (isset($page_subtitle) && !empty($page_subtitle)) { ?><small><?= $page_subtitle ?></small><?php } ?></h1><?php } ?></section>
