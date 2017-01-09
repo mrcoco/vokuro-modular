@@ -7,6 +7,5 @@
  */
 
 return array(
-    'blog',
     'page'
 );

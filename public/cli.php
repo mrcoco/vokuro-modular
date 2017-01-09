@@ -7,20 +7,20 @@
  * Time: 11:03
  */
 
+define('APP_PATH', realpath('..') . '/app');
+define('BASE_PATH', dirname(__DIR__));
+
+
 use Symfony\Component\Console\Application;
 use App\Commands\GenerateModel;
-use APP\Commands\GenerateDatabase;
+use App\Commands\GenerateDatabase;
 use App\Commands\GenerateModule;
 use App\Commands\GenerateController;
 use App\Commands\GenerateRouter;
 use App\Commands\GenerateView;
+use App\Commands\DropModule;
 
-require '../../vendor/autoload.php';
-
-foreach (glob(__DIR__."/command/*.php") as $filename)
-{
-    include $filename;
-}
+require_once BASE_PATH . '/vendor/autoload.php';
 
 $application = new Application();
 $application->add(new GenerateModule());
@@ -29,6 +29,7 @@ $application->add(new GenerateDatabase());
 $application->add(new GenerateController());
 $application->add(new GenerateView());
 $application->add(new GenerateRouter());
+$application->add(new DropModule());
 try {
 
     $application->run();
@@ -38,3 +39,4 @@ try {
     echo $e->getMessage();
     exit(255);
 }
+

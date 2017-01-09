@@ -2,11 +2,11 @@
 /**
  * Created by Vokuro-Cli
  * User: dwiagus
- * Date: 03/01/2017
- * Time: 1414:0101:1010
+ * Date: 09/01/2017
+ * Time: 0808:0101:4848
  */
 
-namespace Modules\Pages;
+namespace Modules\Page;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;

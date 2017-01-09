@@ -3,14 +3,16 @@
  * Created by Vokuro-Cli.
  * User: dwiagus
  * Date: !data
- * Time: !time
+ * Time: 08:01:48
  */
 
-namespace Modules\!module\Controllers;
-use Modules\!module\Models\!model;
+namespace Modules\Page\Controllers;
+use Modules\Page\Models\Page;
 use Phalcon\Mvc\Model\Manager;
 use \Phalcon\Tag;
-class PagesController extends \Vokuro\Controllers\BaseController
+use Vokuro\Controllers\ControllerBase;
+
+class PageController extends ControllerBase
 {
     public function initialize()
     {
@@ -36,7 +38,7 @@ class PagesController extends \Vokuro\Controllers\BaseController
                 1 => "%".$searchPhrase."%"
             );
         }
-        $qryTotal = !model::find($arProp);
+        $qryTotal = Page::find($arProp);
         $rowCount = $rowCount < 0 ? $qryTotal->count() : $rowCount;
         $arProp['order'] = "created DESC";
         $arProp['limit'] = $rowCount;
@@ -46,13 +48,15 @@ class PagesController extends \Vokuro\Controllers\BaseController
                 $arProp['order'] = $k.' '.$v;
             }
         }
-        $qry = !model::find($arProp);
+        $qry = Page::find($arProp);
         $arQry = array();
         $no =1;
         foreach ($qry as $item){
             $arQry[] = array(
                 'no'    => $no,
-                !column
+                	'content' => $item->content,
+		'status' => $item->status,
+	
             );
             $no++;
         }
@@ -73,8 +77,10 @@ class PagesController extends \Vokuro\Controllers\BaseController
     public function createAction()
     {
         $this->view->disable();
-        $data = new !model();
-        !input
+        $data = new Page();
+        	$data->content;
+		$data->status;
+	
         if($page->save()){
             $alert = "sukses";
             $msg .= "Edited Success ";
@@ -91,8 +97,10 @@ class PagesController extends \Vokuro\Controllers\BaseController
     public function editAction()
     {
         $this->view->disable();
-        $data = !model::findFirst($this->request->getPost('hidden_id'));
-        !input
+        $data = Page::findFirst($this->request->getPost('hidden_id'));
+        	$data->content;
+		$data->status;
+	
 
         if (!$data->save()) {
             foreach ($data->getMessages() as $message) {
@@ -112,7 +120,7 @@ class PagesController extends \Vokuro\Controllers\BaseController
 
     public function getAction()
     {
-        $data = !model::findFirst($this->request->getQuery('id'));
+        $data = Page::findFirst($this->request->getQuery('id'));
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent($data->toArray());
@@ -122,14 +130,14 @@ class PagesController extends \Vokuro\Controllers\BaseController
     public function deleteAction($id)
     {
         $this->view->disable();
-        $data   = !model::findFirstById($id);
+        $data   = Page::findFirstById($id);
 
         if (!$data->delete()) {
             $alert  = "error";
             $msg    = $data->getMessages();
         } else {
             $alert  = "sukses";
-            $msg    = "!model was deleted ";
+            $msg    = "Page was deleted ";
         }
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
