@@ -57,7 +57,7 @@ class BlogController extends ControllerBase
                 	'title' => $item->title,
 		'content' => $item->content,
 		'status' => $item->status,
-	
+	    'created' => $item->created,
             );
             $no++;
         }

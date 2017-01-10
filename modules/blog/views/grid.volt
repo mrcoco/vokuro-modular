@@ -6,14 +6,6 @@
             selection: true,
             multiSelect: true,
             formatters: {
-                "published": function(column, row)
-                {
-                    if(row.publish == 1){
-                        return "Yes";
-                    }else{
-                        return "No";
-                    }
-                },
                 "commands": function(column, row)
                 {
                     return "<button type=\"button\" class=\"btn btn-sm btn-primary command-edit\" data-row-title=\""+row.title+"\" data-row-category=\""+row.category+"\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " +

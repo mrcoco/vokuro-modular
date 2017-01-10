@@ -5,6 +5,7 @@
   <link href="//netdna.bootstrapcdn.com/bootswatch/3.2.0/united/bootstrap.min.css" rel="stylesheet">
     {{ stylesheet_link('css/style.css') }}
     {{ stylesheet_link('css/jquery.bootgrid.css') }}
+    {{ stylesheet_link('css/font-awesome/css/font-awesome.css') }}
 </head>
 <body>
 <nav class="navbar navbar-inverse">
