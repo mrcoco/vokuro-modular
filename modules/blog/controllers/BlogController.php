@@ -3,16 +3,15 @@
  * Created by Vokuro-Cli.
  * User: dwiagus
  * Date: !data
- * Time: 08:01:48
+ * Time: 09:01:27
  */
 
-namespace Modules\Page\Controllers;
-use Modules\Page\Models\Page;
-use Phalcon\Mvc\Model\Manager;
+namespace Modules\Blog\Controllers;
+use Modules\Blog\Models\Blog;
+use \Phalcon\Mvc\Model\Manager;
 use \Phalcon\Tag;
 use Vokuro\Controllers\ControllerBase;
-
-class PageController extends ControllerBase
+class BlogController extends ControllerBase
 {
     public function initialize()
     {
@@ -21,6 +20,7 @@ class PageController extends ControllerBase
 
     public function indexAction()
     {
+        $this->view->grid = "grid";
         $this->view->pick("index");
     }
 
@@ -38,7 +38,7 @@ class PageController extends ControllerBase
                 1 => "%".$searchPhrase."%"
             );
         }
-        $qryTotal = Page::find($arProp);
+        $qryTotal = Blog::find($arProp);
         $rowCount = $rowCount < 0 ? $qryTotal->count() : $rowCount;
         $arProp['order'] = "created DESC";
         $arProp['limit'] = $rowCount;
@@ -48,13 +48,14 @@ class PageController extends ControllerBase
                 $arProp['order'] = $k.' '.$v;
             }
         }
-        $qry = Page::find($arProp);
+        $qry = Blog::find($arProp);
         $arQry = array();
         $no =1;
         foreach ($qry as $item){
             $arQry[] = array(
                 'no'    => $no,
-                	'content' => $item->content,
+                	'title' => $item->title,
+		'content' => $item->content,
 		'status' => $item->status,
 	
             );
@@ -77,8 +78,9 @@ class PageController extends ControllerBase
     public function createAction()
     {
         $this->view->disable();
-        $data = new Page();
-        	$data->content;
+        $data = new Blog();
+        	$data->title;
+		$data->content;
 		$data->status;
 	
         if($page->save()){
@@ -97,8 +99,9 @@ class PageController extends ControllerBase
     public function editAction()
     {
         $this->view->disable();
-        $data = Page::findFirst($this->request->getPost('hidden_id'));
-        	$data->content;
+        $data = Blog::findFirst($this->request->getPost('hidden_id'));
+        	$data->title;
+		$data->content;
 		$data->status;
 	
 
@@ -120,7 +123,7 @@ class PageController extends ControllerBase
 
     public function getAction()
     {
-        $data = Page::findFirst($this->request->getQuery('id'));
+        $data = Blog::findFirst($this->request->getQuery('id'));
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');
         $response->setJsonContent($data->toArray());
@@ -130,14 +133,14 @@ class PageController extends ControllerBase
     public function deleteAction($id)
     {
         $this->view->disable();
-        $data   = Page::findFirstById($id);
+        $data   = Blog::findFirstById($id);
 
         if (!$data->delete()) {
             $alert  = "error";
             $msg    = $data->getMessages();
         } else {
             $alert  = "sukses";
-            $msg    = "Page was deleted ";
+            $msg    = "Blog was deleted ";
         }
         $response = new \Phalcon\Http\Response();
         $response->setContentType('application/json', 'UTF-8');

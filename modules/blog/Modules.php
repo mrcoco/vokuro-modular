@@ -2,11 +2,11 @@
 /**
  * Created by Vokuro-Cli
  * User: dwiagus
- * Date: 09/01/2017
- * Time: 0808:0101:4848
+ * Date: 10/01/2017
+ * Time: 0909:0101:2626
  */
 
-namespace Modules\Page;
+namespace Modules\Blog;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
@@ -24,8 +24,8 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces(
             [
-                "Modules\\Page\\Controllers" => __DIR__."/controllers/",
-                "Modules\\Page\\Models"      => __DIR__."/models/",
+                "Modules\\Blog\\Controllers" => __DIR__."/controllers/",
+                "Modules\\Blog\\Models"      => __DIR__."/models/",
             ]
         );
 

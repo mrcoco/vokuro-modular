@@ -1,7 +1,7 @@
 <?php
-namespace Modules\Page\Models;
+namespace Modules\Blog\Models;
 use \Phalcon\Mvc\Model\Behavior\Timestampable;
-class Page extends \Phalcon\Mvc\Model
+class Blog extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -14,6 +14,13 @@ class Page extends \Phalcon\Mvc\Model
     public $id;
 
     /**
+	*
+	* @var varchar
+	* @Column(type="varchar", length=10, nullable=false)
+	*/
+	
+	public $title;
+/**
 	*
 	* @var varchar
 	* @Column(type="varchar", length=10, nullable=false)
