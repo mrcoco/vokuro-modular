@@ -1,1 +1,1 @@
-<?php return ['','blog'];
+<?php return ['cms'];

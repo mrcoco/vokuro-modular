@@ -1,1 +1,0 @@
-<?php if (isset($custom_css) && $custom_css == true) { ?><?= $this->assets->outputCss('custom_css') ?><?php } ?>

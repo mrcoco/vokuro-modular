@@ -5,6 +5,7 @@
   <link href="//netdna.bootstrapcdn.com/bootswatch/3.2.0/united/bootstrap.min.css" rel="stylesheet">
     {{ stylesheet_link('css/style.css') }}
     {{ stylesheet_link('css/jquery.bootgrid.css') }}
+    {{ stylesheet_link('css/toastr.min.css') }}
     {{ stylesheet_link('css/font-awesome/css/font-awesome.css') }}
 </head>
 <body>
@@ -55,6 +56,8 @@
 </div>
 {{ javascript_include('js/jquery/jquery-3.1.0.min.js') }}
 {{ javascript_include('js/bootstrap/bootstrap.min.js') }}
+{{ javascript_include('js/jquery.form.min.js') }}
+{{ javascript_include("js/toastr.min.js") }}
 {% if grid is defined %}
     {{ javascript_include('js/jquery.bootgrid.js') }}
     {{ javascript_include('js/jquery.bootgrid.fa.js') }}

@@ -29,6 +29,13 @@
     "require": {
         "php": ">=5.5",
         "ext-phalcon": ">=3.0.0",
-        "mrcoco/vokuro-cli": "dev-master"
+        "mnsami/composer-custom-directory-installer": "1.1.*",
+        "mrcoco/vokuro-cli": "dev-master",
+        "mrcoco/vokuro-cms": "dev-master"
+    },
+    "extra": {
+        "installer-paths": {
+            "./modules/cms/": ["mrcoco/vokuro-cms"]
+        }
     }
 }

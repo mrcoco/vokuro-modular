@@ -42,6 +42,9 @@ class Bootstrap
         $arr_modules = include APP_PATH . '/config/modules.php';
         $modules = $this->modulesConfig($arr_modules);
         $application->registerModules($modules);
+        /*echo "<pre>";
+        print_r($application);
+        echo "</pre>";*/
         echo $application->handle()->getContent();
     }
 
