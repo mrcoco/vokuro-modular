@@ -1,20 +1,32 @@
 <?php
-error_reporting(E_ALL);
 
 /**
- * Define some useful constants
+ * This file is part of the Vökuró.
+ *
+ * (c) Phalcon Team <team@phalcon.io>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
  */
-define('APP_PATH', realpath('..') . '/app');
-define('BASE_PATH', dirname(__DIR__));
-// Use composer autoloader to load vendor classes
-require_once BASE_PATH . '/vendor/autoload.php';
-include BASE_PATH. '/app/config/Bootstrap.php';
+
+use Vokuro\Application as VokuroApplication;
+
+error_reporting(E_ALL);
+$rootPath = dirname(__DIR__);
 
 try {
-    $app = new Bootstrap();
-    $app->run();
+    require_once $rootPath . '/vendor/autoload.php';
 
+    /**
+     * Load .env configurations
+     */
+    Dotenv\Dotenv::create($rootPath)->load();
+
+    /**
+     * Run Vökuró!
+     */
+    echo (new VokuroApplication($rootPath))->run();
 } catch (Exception $e) {
-	echo $e->getMessage(), '<br>';
-	echo nl2br(htmlentities($e->getTraceAsString()));
+    echo $e->getMessage(), '<br>';
+    echo nl2br(htmlentities($e->getTraceAsString()));
 }
