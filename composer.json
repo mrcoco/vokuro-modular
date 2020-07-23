@@ -1,11 +1,12 @@
 {
-    "name": "phalcon/vokuro",
+    "name": "mrcoco/vokuro-modular",
     "type": "library",
     "description": "This is a sample application for the Phalcon PHP Framework",
     "keywords": [
         "phalcon",
         "framework",
         "sample app",
+        "modular",
         "vokuro"
     ],
     "homepage": "https://phalcon.io",
@@ -18,6 +19,10 @@
         {
             "name": "Anton Vasiliev",
             "homepage": "https://github.com/Jeckerson"
+        },
+        {
+            "name": "Dwi Agus Purwanto",
+            "homepage": "https://github.com/mrcoco"
         },
         {
             "name": "Contributors",

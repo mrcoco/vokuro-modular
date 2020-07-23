@@ -25,3 +25,10 @@ $router->add('/reset-password/{code}/{email}', [
     'controller' => 'user_control',
     'action'     => 'resetPassword',
 ]);
+
+$router->add('/blog', array(
+    'namespace'  => 'Modules\Blog\Controllers',
+    'module'     => 'blog',
+    'controller' => 'blog',
+    'action'     => 'index'
+));

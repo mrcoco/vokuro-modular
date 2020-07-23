@@ -18,6 +18,7 @@ use Phalcon\Di\FactoryDefault;
 use Phalcon\Di\ServiceProviderInterface;
 use Phalcon\Http\ResponseInterface;
 use Phalcon\Mvc\Application as MvcApplication;
+use Phalcon\Text;
 
 /**
  * Vökuró Application
@@ -53,6 +54,7 @@ class Application
         $this->di = new FactoryDefault();
         $this->app = $this->createApplication();
         $this->rootPath = $rootPath;
+        $this->app->registerModules($this->modulesInit());
 
         $this->di->setShared(self::APPLICATION_PROVIDER, $this);
 
@@ -111,5 +113,27 @@ class Application
             $provider = new $providerClass;
             $provider->register($this->di);
         }
+    }
+
+    private function modulesInit()
+    {
+        $filename = $this->rootPath . '/config/modules.php';
+        if (!file_exists($filename) || !is_readable($filename)) {
+            throw new Exception('File modules.php does not exist or is not readable.');
+        }
+        $modules_name = include_once $filename;
+        $modules = array();
+        if(!empty($modules_name)){
+            foreach ($modules_name as $module) {
+                $simple = Text::uncamelize($module);
+                $simple = str_replace('_', '-', $simple);
+                $modules[$simple] = array(
+                    'namespace' => 'Modules\\'.ucfirst($module),
+                    'className' => 'Modules\\'.ucfirst($module) . '\Modules',
+                    'path' => $this->rootPath . '/modules/' . $module . '/Modules.php'
+                );
+            }
+        }
+        return $modules;
     }
 }
